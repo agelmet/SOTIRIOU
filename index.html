@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://www.paypal.com/sdk/js?client-id=test&currency=EUR"></script>
 
     <style>
         /* ═══════════════════════════════════════
@@ -199,13 +201,13 @@
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 2.5rem;
+            gap: 2rem;
         }
         .nav-links a {
             font-family: var(--font-body);
             font-size: 0.7rem;
             font-weight: 400;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
             color: var(--cream);
             transition: color 0.3s ease;
@@ -297,7 +299,7 @@
         }
         .mobile-menu a {
             font-family: var(--font-display);
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 300;
             color: var(--cream);
             letter-spacing: 0.05em;
@@ -377,9 +379,9 @@
         }
         .hero-label {
             font-family: var(--font-body);
-            font-size: 0.65rem;
+            font-size: 0.8rem;
             font-weight: 400;
-            letter-spacing: 0.45em;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
             color: var(--terracotta-light);
             margin-bottom: 28px;
@@ -402,10 +404,10 @@
         }
         .hero-subtitle {
             font-family: var(--font-body);
-            font-size: clamp(0.88rem, 1.3vw, 1.05rem);
+            font-size: clamp(1rem, 1.5vw, 1.25rem);
             font-weight: 200;
             line-height: 1.7;
-            color: rgba(240,223,206,0.75);
+            color: rgba(240,223,206,0.9);
             max-width: 520px;
             margin: 0 0 40px;
             opacity: 0;
@@ -499,7 +501,55 @@
         }
 
         /* ═══════════════════════════════════════
-           ABOUT / PHILOSOPHY
+           PHILOSOPHY (NEW SECTION)
+        ═══════════════════════════════════════ */
+        .philosophy {
+            padding: clamp(80px, 12vw, 160px) 0;
+            background: var(--cream);
+            position: relative;
+        }
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(40px, 6vw, 80px);
+            align-items: stretch;
+        }
+        .philosophy-card {
+            background: var(--cream-light);
+            padding: 50px;
+            border: 1px solid rgba(164,102,81,0.15);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .philosophy-card h3 {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            color: var(--terracotta);
+            margin-bottom: 20px;
+        }
+        .philosophy-card p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--warm-gray);
+        }
+        .philosophy-image {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+        }
+        .philosophy-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s var(--ease-out-expo);
+        }
+        .philosophy-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* ═══════════════════════════════════════
+           ABOUT
         ═══════════════════════════════════════ */
         .about {
             padding: clamp(80px, 12vw, 160px) 0;
@@ -689,6 +739,68 @@
             padding: 6px 14px;
             border: 1px solid rgba(240,223,206,0.12);
             color: rgba(240,223,206,0.5);
+        }
+
+        /* ═══════════════════════════════════════
+           WRITTEN GUIDANCE (NEW FUNCTIONALITY)
+        ═══════════════════════════════════════ */
+        .guidance {
+            padding: clamp(80px, 12vw, 160px) 0;
+            background: var(--cream);
+            position: relative;
+        }
+        .guidance-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        .guidance-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--cream-light);
+            padding: clamp(30px, 5vw, 60px);
+            border: 1px solid rgba(164,102,81,0.2);
+            box-shadow: 0 10px 40px rgba(110,90,80,0.05);
+        }
+        .guidance-textarea {
+            width: 100%;
+            padding: 20px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--warm-gray);
+            background: #fff;
+            border: 1px solid rgba(164,102,81,0.2);
+            resize: vertical;
+            margin-bottom: 24px;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .guidance-textarea:focus {
+            border-color: var(--terracotta);
+            box-shadow: 0 0 0 4px rgba(164,102,81,0.05);
+        }
+        .guidance-lock-msg {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            color: var(--terracotta);
+            margin-bottom: 20px;
+        }
+        .guidance-lock-msg svg {
+            width: 18px;
+            height: 18px;
+        }
+        .payment-status {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+            margin-top: 20px;
+            font-weight: 500;
         }
 
         /* ═══════════════════════════════════════
@@ -1182,6 +1294,7 @@
         @media (max-width: 1024px) {
             .nav-links { display: none; }
             .hamburger { display: flex; }
+            .philosophy-grid { gap: 40px; }
             .services-grid { grid-template-columns: 1fr; }
             .pillars-grid { grid-template-columns: repeat(2, 1fr); }
             .pillar-card:nth-child(2) { border-right: none; }
@@ -1193,6 +1306,7 @@
         }
 
         @media (max-width: 768px) {
+            .philosophy-grid { grid-template-columns: 1fr; }
             .about-inner { grid-template-columns: 1fr; }
             .about-image-wrap {
                 max-width: 400px;
@@ -1219,8 +1333,8 @@
                 padding-top: 80px;
             }
             .hero-line { margin: 0 auto 20px; }
-            .hero-label { font-size: 0.55rem; letter-spacing: 0.3em; margin-bottom: 20px; }
-            .hero-subtitle { font-size: 0.82rem; margin: 0 auto 32px; max-width: 400px; }
+            .hero-label { font-size: 0.65rem; margin-bottom: 20px; }
+            .hero-subtitle { font-size: 0.95rem; margin: 0 auto 32px; max-width: 400px; }
             .hero-actions { justify-content: center; }
             .hero { align-items: center; justify-content: center; }
         }
@@ -1235,13 +1349,11 @@
 
 <body>
 
-    <!-- PRELOADER -->
     <div class="preloader" id="preloader">
         <img src="https://github.com/agelmet/SOTIRIOU/blob/main/6C363F64-D8FB-4F2A-8073-D91E388C5C2F.png?raw=true" alt="Logo" class="preloader-logo">
         <div class="preloader-line"></div>
     </div>
 
-    <!-- NAVIGATION -->
     <nav class="nav" id="nav">
         <div class="container nav-inner">
             <a href="#top" class="nav-logo">
@@ -1250,10 +1362,11 @@
             <div class="nav-links">
                 <a href="#about">Η Ψυχολογος</a>
                 <a href="#services">Υπηρεσιες</a>
+                <a href="#guidance">Γραπτη Καθοδηγηση</a>
                 <a href="#pillars">Προσεγγιση</a>
                 <a href="#space">Ο Χωρος</a>
                 <a href="#reviews">Εμπειριες</a>
-                <a href="https://calendly.com/a-sotiriou-psy/online?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnXDWyr0Ln4HDrp3ebS1WhUltdrl__HDNnevrsUh5OXjl_8Y0CX6EA8HHAyj8_aem_5Z2b30e8v419xQEyP0i3OQ&utm_id=97760_v0_s00_e0_tv3_a1denngm7cdsqj&month=2026-04" target="_blank" class="nav-cta">Κλειστε Ραντεβου</a>
+                <a href="https://calendly.com/a-sotiriou-psy/online" target="_blank" class="nav-cta">Κλειστε Online Ραντεβου.</a>
             </div>
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -1263,17 +1376,16 @@
         </div>
     </nav>
 
-    <!-- MOBILE MENU -->
     <div class="mobile-menu" id="mobileMenu">
         <a href="#about" onclick="closeMobile()">Η Ψυχολογος</a>
         <a href="#services" onclick="closeMobile()">Υπηρεσιες</a>
+        <a href="#guidance" onclick="closeMobile()">Γραπτη Καθοδηγηση</a>
         <a href="#pillars" onclick="closeMobile()">Προσεγγιση</a>
         <a href="#space" onclick="closeMobile()">Ο Χωρος</a>
         <a href="#reviews" onclick="closeMobile()">Εμπειριες</a>
-        <a href="https://calendly.com/a-sotiriou-psy/online?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnXDWyr0Ln4HDrp3ebS1WhUltdrl__HDNnevrsUh5OXjl_8Y0CX6EA8HHAyj8_aem_5Z2b30e8v419xQEyP0i3OQ&utm_id=97760_v0_s00_e0_tv3_a1denngm7cdsqj&month=2026-04" target="_blank" onclick="closeMobile()">Κλειστε Ραντεβου</a>
+        <a href="https://calendly.com/a-sotiriou-psy/online" target="_blank" onclick="closeMobile()">Κλειστε Online Ραντεβου.</a>
     </div>
 
-    <!-- HERO -->
     <section class="hero" id="top">
         <div class="hero-bg">
             <img src="https://raw.githubusercontent.com/agelmet/SOTIRIOU/refs/heads/main/IMG_8913.jpeg" alt="Background">
@@ -1282,12 +1394,12 @@
         <div class="hero-grain"></div>
         <div class="hero-content">
             <div class="hero-line"></div>
-            <div class="hero-label">Ψυχοθεραπεια &middot; Συμβουλευτικη &middot; Art Therapy</div>
-            <h1 class="hero-title">Συνθετικη Ψυχοθεραπεια <em>&</em> Εκφραση</h1>
-            <p class="hero-subtitle">Βρισκοντας την ισορροπια σου. Ενας ασφαλης, ζεστος χωρος οπου η επιστημη συναντα τη δημιουργικη εκφραση.</p>
+            <div class="hero-label">«Συνθέτοντας το δρόμο προς την προσωπική σου ενδυνάμωση»</div>
+            <h1 class="hero-title">Ασημίνα Σωτηρίου</h1>
+            <p class="hero-subtitle">Ψυχολόγος – Συνθετική Προσέγγιση & Art Therapy</p>
             <div class="hero-actions">
-                <a href="https://calendly.com/a-sotiriou-psy/online?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnXDWyr0Ln4HDrp3ebS1WhUltdrl__HDNnevrsUh5OXjl_8Y0CX6EA8HHAyj8_aem_5Z2b30e8v419xQEyP0i3OQ&utm_id=97760_v0_s00_e0_tv3_a1denngm7cdsqj&month=2026-04" target="_blank" class="btn-primary">
-                    Κλειστε Ραντεβου
+                <a href="https://calendly.com/a-sotiriou-psy/online" target="_blank" class="btn-primary">
+                    Κλείστε Online Ραντεβού.
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
                 <a href="#about" class="btn-secondary">Γνωριστε Με</a>
@@ -1299,7 +1411,27 @@
         </div>
     </section>
 
-    <!-- ABOUT -->
+    <section class="philosophy" id="philosophy">
+        <div class="container">
+            <div class="philosophy-grid">
+                <div class="philosophy-card reveal">
+                    <h3>Συνθετική Προσέγγιση</h3>
+                    <p>«Προσαρμόζουμε τη θεραπευτική διαδικασία στις δικές σας μοναδικές ανάγκες, χρησιμοποιώντας εργαλεία από διαφορετικές σχολές.»</p>
+                </div>
+                <div class="philosophy-image reveal reveal-delay-1">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800" alt="Art Therapy Colors">
+                </div>
+                <div class="philosophy-image reveal">
+                    <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=800" alt="Creative Art">
+                </div>
+                <div class="philosophy-card reveal reveal-delay-1">
+                    <h3>Art Therapy</h3>
+                    <p>«Η τέχνη γίνεται το μέσο για να εκφράσουμε όσα οι λέξεις δυσκολεύονται να πουν.»</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="about" id="about">
         <div class="container">
             <div class="about-inner">
@@ -1314,20 +1446,19 @@
                     </div>
                 </div>
                 <div class="about-text">
-                    <div class="section-label reveal">Η Θεραπευτρια</div>
+                    <div class="section-label reveal">Σχετικα με μενα</div>
                     <h2 class="section-title reveal reveal-delay-1">Ασημινα <em>Σωτηριου</em></h2>
-                    <p class="reveal reveal-delay-2">Η Ασημινα Σωτηριου ειναι Ψυχολογος, Συμβουλος Προσωπικης Αναπτυξης και Ψυχοθεραπευτρια, με εδρα το ιδιωτικο της γραφειο στην Κορινθο. Διαθετει ισχυρο διεθνες ακαδημαικο υποβαθρο, εχοντας αποφοιτησει απο το London Metropolitan University, ενω εχει διευρυνει την καταρτιση της με μεταπτυχιακες σπουδες στη Συνθετικη Ψυχοθεραπεια και την Εικαστικη Θεραπεια (Art Therapy).</p>
-                    <p class="reveal reveal-delay-2">Η θεραπευτικη της ταυτοτητα ειναι Συνθετικη. Δεν εφαρμοζει μια «απολυτη» μεθοδο σε ολους, αλλα προσαρμοζει τα κλινικα εργαλεια της ακριβως στις αναγκες, την προσωπικοτητα και τον ρυθμο του καθε ανθρωπου. Παραλληλα, διαθετει ειδικη κλινικη εκπαιδευση στη διαχειριση κρισεων πανικου.</p>
+                    <p class="reveal reveal-delay-2">Είμαι η Ασημίνα Σωτηρίου, Ψυχολόγος, Σύμβουλος Προσωπικής Ανάπτυξης και Ψυχοθεραπεύτρια, με έδρα το ιδιωτικό μου γραφείο στην Κόρινθο. Διαθέτω ισχυρό διεθνές ακαδημαϊκό υπόβαθρο, έχοντας αποφοιτήσει από το London Metropolitan University.</p>
+                    <p class="reveal reveal-delay-2">Η βαθιά μου εξειδίκευση στην <strong>Κλινική Ψυχολογία</strong>, παράλληλα με τις μεταπτυχιακές μου σπουδές στη Συνθετική Ψυχοθεραπεία και την Εικαστική Θεραπεία (Art Therapy), μου επιτρέπει να ενώνω τη στιβαρή επιστημονική γνώση με την εστίαση στην προσωπική σας ενδυνάμωση.</p>
                     <blockquote class="about-quote reveal reveal-delay-3">
-                        Ειτε μεσω της θεραπειας μεσω συζητησης ειτε μεσω της δημιουργικης εκφρασης, ο στοχος παραμενει κοινος: ενας ασφαλης, ζεστος και μη-επικριτικος χωρος.
+                        Είτε μέσω της θεραπείας μέσω συζήτησης είτε μέσω της δημιουργικής έκφρασης, ο στόχος παραμένει κοινός: ένας ασφαλής, ζεστός και μη-επικριτικός χώρος.
                     </blockquote>
-                    <p class="reveal reveal-delay-3">Αναλαμβανει ατομικες συνεδριες ενηλικων και εφηβων, καθως και θεραπεια ζευγους και οικογενειας, βοηθωντας τους θεραπευομενους να ξεπερασουν τα εμποδια τους και να χτισουν μια αυθεντικη, γεματη νοημα ζωη.</p>
+                    <p class="reveal reveal-delay-3">Η θεραπευτική μου ταυτότητα είναι Συνθετική. Δεν εφαρμόζω μια «απόλυτη» μέθοδο σε όλους, αλλά προσαρμόζω τα κλινικά εργαλεία ακριβώς στις ανάγκες, την προσωπικότητα και τον ρυθμό του κάθε ανθρώπου, βοηθώντας τους θεραπευόμενους να ξεπεράσουν τα εμπόδιά τους και να χτίσουν μια αυθεντική ζωή.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SERVICES -->
     <section class="services" id="services">
         <div class="container">
             <div class="services-header">
@@ -1385,18 +1516,42 @@
                 </div>
 
             </div>
-
-            <div style="text-align: center; margin-top: 48px;" class="reveal">
-                <a href="https://calendly.com/a-sotiriou-psy/online?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnXDWyr0Ln4HDrp3ebS1WhUltdrl__HDNnevrsUh5OXjl_8Y0CX6EA8HHAyj8_aem_5Z2b30e8v419xQEyP0i3OQ&utm_id=97760_v0_s00_e0_tv3_a1denngm7cdsqj&month=2026-04" target="_blank" class="btn-primary" style="background: var(--cream); color: var(--black);">
-                    Κλειστε Ραντεβου
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-            </div>
-
         </div>
     </section>
 
-    <!-- PILLARS -->
+    <section class="guidance" id="guidance">
+        <div class="container">
+            <div class="guidance-header reveal">
+                <div class="section-label">Αμεση Βοηθεια</div>
+                <h2 class="section-title">Γραπτή <em>Καθοδήγηση</em></h2>
+                <p style="font-size:0.95rem; font-weight:300; color:var(--warm-gray);">Μοιραστείτε μαζί μου με ασφάλεια και εμπιστευτικότητα αυτό που σας απασχολεί. Θα λάβετε μια ολοκληρωμένη και εξατομικευμένη συμβουλευτική απάντηση μέσω email.</p>
+            </div>
+            
+            <div class="guidance-container reveal reveal-delay-1">
+                <form id="guidance-form" onsubmit="event.preventDefault();">
+                    <textarea 
+                        id="guidanceTextarea" 
+                        class="guidance-textarea" 
+                        rows="8" 
+                        placeholder="Περιγράψτε εδώ αναλυτικά το ζήτημα που αντιμετωπίζετε..." 
+                        required></textarea>
+                    
+                    <div class="guidance-lock-msg" id="lockMessage">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        Η φόρμα είναι κλειδωμένη. Το μήνυμά σας θα αποσταλεί αυτόματα μετά την επιτυχή πληρωμή (Fixed Fee).
+                    </div>
+
+                    <div class="guidance-payment-overlay" id="paypal-button-container">
+                        </div>
+
+                    <div id="payment-success-message" class="payment-status">
+                        ✓ Η πληρωμή σας ολοκληρώθηκε επιτυχώς! Το αίτημά σας εστάλη με ασφάλεια. Θα λάβετε απάντηση σύντομα.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <section class="pillars" id="pillars">
         <div class="container">
             <div class="pillars-header">
@@ -1428,7 +1583,6 @@
         </div>
     </section>
 
-    <!-- JOURNEY -->
     <section class="journey" id="journey">
         <div class="container">
             <div class="journey-header">
@@ -1461,7 +1615,6 @@
         </div>
     </section>
 
-    <!-- SPACE -->
     <section class="space" id="space">
         <div class="container">
             <div class="space-header">
@@ -1510,13 +1663,11 @@
         </div>
     </section>
 
-    <!-- LIGHTBOX -->
     <div class="lightbox" id="lightbox" onclick="closeLightbox()">
         <button class="lightbox-close">&times;</button>
         <img id="lightboxImg" src="" alt="Gallery Image">
     </div>
 
-    <!-- REVIEWS -->
     <section class="reviews" id="reviews">
         <div class="container">
             <div class="reviews-header">
@@ -1526,7 +1677,6 @@
         </div>
         <div class="reviews-carousel reveal">
             <div class="reviews-track" id="reviewsTrack">
-                <!-- Set 1 -->
                 <div class="review-card">
                     <div class="review-quote-mark">"</div>
                     <p>Η κυρια Σωτηριου με βοηθησε να κατανοησω τα αιτια του αγχους μου. Νιωθω πλεον πολυ πιο δυνατη και σιγουρη για τον εαυτο μου.</p>
@@ -1575,7 +1725,6 @@
                         <div class="review-source"><img src="https://www.doctoranytime.gr/images/logo-rebranding.svg" alt="Doctoranytime"></div>
                     </div>
                 </div>
-                <!-- Duplicate for infinite scroll -->
                 <div class="review-card">
                     <div class="review-quote-mark">"</div>
                     <p>Η κυρια Σωτηριου με βοηθησε να κατανοησω τα αιτια του αγχους μου. Νιωθω πλεον πολυ πιο δυνατη και σιγουρη για τον εαυτο μου.</p>
@@ -1633,22 +1782,20 @@
         </div>
     </section>
 
-    <!-- CTA -->
     <section class="cta-section">
         <div class="container">
             <div class="section-label reveal">Το Πρωτο Βημα</div>
             <h2 class="section-title reveal reveal-delay-1">Η Αλλαγη Ξεκιναει <em>Σημερα</em></h2>
             <p class="reveal reveal-delay-2">Επικοινωνηστε για να ορισουμε την πρωτη σας συνεδρια σε ενα περιβαλλον απολυτης αποδοχης και ασφαλειας.</p>
             <div class="reveal reveal-delay-3">
-                <a href="https://calendly.com/a-sotiriou-psy/online?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnXDWyr0Ln4HDrp3ebS1WhUltdrl__HDNnevrsUh5OXjl_8Y0CX6EA8HHAyj8_aem_5Z2b30e8v419xQEyP0i3OQ&utm_id=97760_v0_s00_e0_tv3_a1denngm7cdsqj&month=2026-04" target="_blank" class="btn-light">
-                    Κλειστε Ραντεβου
+                <a href="https://calendly.com/a-sotiriou-psy/online" target="_blank" class="btn-light">
+                    Κλείστε Online Ραντεβού.
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="footer" id="contact">
         <div class="container">
             <div class="footer-grid">
@@ -1699,7 +1846,6 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT -->
     <script>
         // Preloader
         window.addEventListener('load', () => {
@@ -1758,6 +1904,65 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeLightbox();
         });
+
+        // PAYMENT INTEGRATION LOGIC (PayPal JS SDK Sandbox)
+        paypal.Buttons({
+            style: {
+                color: 'black',
+                shape: 'rect',
+                label: 'pay'
+            },
+            createOrder: function(data, actions) {
+                // Ensure the user has actually written a message before paying
+                const message = document.getElementById('guidanceTextarea').value;
+                if(message.trim() === '') {
+                    alert('Παρακαλώ συμπληρώστε πρώτα το μήνυμά σας στο πεδίο κειμένου.');
+                    return actions.reject();
+                }
+
+                // Create the payment order (Fixed fee of 50 EUR for instance)
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '50.00' 
+                        },
+                        description: 'Γραπτή Καθοδήγηση - Ασημίνα Σωτηρίου'
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    // This function triggers after successful payment
+                    
+                    // 1. Hide Payment buttons & Lock Msg
+                    document.getElementById('paypal-button-container').style.display = 'none';
+                    document.getElementById('lockMessage').style.display = 'none';
+                    
+                    // 2. Lock the textarea
+                    document.getElementById('guidanceTextarea').disabled = true;
+                    
+                    // 3. Show Success Message
+                    document.getElementById('payment-success-message').style.display = 'block';
+
+                    /* NOTE FOR BACKEND IMPLEMENTATION:
+                       At this point, you would trigger a fetch request to your server
+                       (or a service like EmailJS / Make / Zapier) sending the transaction ID
+                       and the user's message to a.sotiriou.psy@gmail.com
+                       
+                       Example structure:
+                       fetch('/api/send-guidance-email', {
+                           method: 'POST',
+                           headers: { 'Content-Type': 'application/json' },
+                           body: JSON.stringify({
+                               transactionId: details.id,
+                               payerEmail: details.payer.email_address,
+                               message: document.getElementById('guidanceTextarea').value
+                           })
+                       });
+                    */
+                });
+            }
+        }).render('#paypal-button-container');
     </script>
 
 </body>
